@@ -1,7 +1,7 @@
-nombre = "Jorge"
-edad = 20
-altura = 1.74
-estudia = True
+nombre = "Jorge"    #str
+edad = 20           #int
+altura = 1.74       #float
+estudia = True      #bool
 
 print(type(nombre))
 print(type(edad))
