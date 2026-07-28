@@ -1,53 +1,31 @@
-print("===================================")
-print(" SISTEMA DE GESTIÓN DE USUARIOS ")
-print("===================================")
-
-opcion = ""
+from menu import mostrar_menu
+from informacion import mostrar_informacion
+from usuarios import crear_usuario, ver_usuarios, eliminar_usuario
+from login import iniciar_sesion
 
 usuarios = []
+opcion = ""
 
-while opcion != "5":
+while opcion != "6":
 
-    print()
-    print("================ MENÚ ================")
-    print("1. Iniciar sesión")
-    print("2. Crear usuario")
-    print("3. Ver usuarios")
-    print("4. Información")
-    print("5. Salir")
-    print("======================================")
+    mostrar_menu()
 
     opcion = input("Seleccione una opción: ")
 
     if opcion == "1":
-        print("Inicio de sesión próximamente...")
+        iniciar_sesion(usuarios)
 
     elif opcion == "2":
-        nombre = input("Nombre del usuario: ")
-        usuarios.append(nombre)
-        print("Usuario creado correctamente.")
+        crear_usuario(usuarios)
 
     elif opcion == "3":
-
-        print("======== USUARIOS ========")
-
-        if len(usuarios) == 0:
-         print("No hay usuarios registrados.")
-        else:
-            for usuario in usuarios:
-                print("-", usuario)
-                
-        print("==========================")
+        ver_usuarios(usuarios)
 
     elif opcion == "4":
-        print("======== INFORMACIÓN ========")
-        print("Versión: 1.0")
-        print("Autor: Jorge")
-        print("Curso: Road to Software Engineer")
-        print("============================")
+        eliminar_usuario(usuarios)
 
     elif opcion == "5":
-        print("Hasta pronto.")
+        mostrar_informacion()
 
-    else:
-        print("Opción no válida.")
+    elif opcion == "6":
+        print("Saliendo del programa...")
