@@ -13,7 +13,11 @@ while opcion != "6":
     opcion = input("Seleccione una opción: ")
 
     if opcion == "1":
-        iniciar_sesion(usuarios)
+
+        if iniciar_sesion(usuarios):
+            print("Acceso concedido.")
+        else:
+            print("Acceso denegado.")
 
     elif opcion == "2":
         crear_usuario(usuarios)

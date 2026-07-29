@@ -1,6 +1,9 @@
 def iniciar_sesion(usuarios):
     nombre_usuario = input("Nombre de usuario: ")
-    if nombre_usuario in usuarios:
-        print(f"Bienvenido, {nombre_usuario}")
-    else:
-        print("Ese usuario no está registrado.")
+    contraseña_usuario = input("Contraseña: ")
+
+    for usuario in usuarios:
+        if usuario["nombre"] == nombre_usuario and usuario["contraseña"] == contraseña_usuario:
+            return True
+
+    return False

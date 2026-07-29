@@ -1,6 +1,17 @@
 def crear_usuario(usuarios):
-    nombre = input("Nombre del usuario: ")
-    usuarios.append(nombre)
+    nombre = input("Nombre: ")
+    contraseña = input("Contraseña: ")
+    for usuario in usuarios:
+        if usuario["nombre"] == nombre:
+            print("Ese usuario ya está registrado.")
+            return
+    usuario = {
+    "nombre": nombre,
+    "contraseña": contraseña
+}
+
+    usuarios.append(usuario)
+
     print("Usuario creado correctamente.")
     
 def ver_usuarios(usuarios):
@@ -11,14 +22,16 @@ def ver_usuarios(usuarios):
         print("No hay usuarios registrados.")
     else:
         for i in range(len(usuarios)):
-            print(f"{i + 1} - {usuarios[i]}")
+            print(f"{i + 1} - {usuarios[i]['nombre']}")
 
     print("==========================")
     
 def eliminar_usuario(usuarios):
     nombre = input("Nombre del usuario a eliminar: ")
-    if nombre in usuarios:
-        usuarios.remove(nombre)
-        print("Usuario eliminado correctamente.")
-    else:
-        print("Ese usuario no existe.")
+    contraseña = input("Contraseña del usuario a eliminar: ")
+    for usuario in usuarios:
+        if usuario["nombre"] == nombre and usuario["contraseña"] == contraseña:
+            usuarios.remove(usuario)
+            print("Usuario eliminado correctamente.")
+            return
+    print("Ese usuario no existe.")
