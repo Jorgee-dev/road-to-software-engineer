@@ -9,8 +9,10 @@ def crear_usuario(usuarios):
     "nombre": nombre,
     "contraseña": contraseña
 }
-
+    archivo = open("01-Python/Proyecto/usuarios.txt", "a")
     usuarios.append(usuario)
+    archivo.write(f"{usuario['nombre']};{usuario['contraseña']}\n")
+    archivo.close()
 
     print("Usuario creado correctamente.")
     
