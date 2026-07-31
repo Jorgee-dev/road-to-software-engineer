@@ -1,9 +1,10 @@
 from menu import mostrar_menu
 from informacion import mostrar_informacion
-from usuarios import crear_usuario, ver_usuarios, eliminar_usuario
+from usuarios import crear_usuario, ver_usuarios
 from login import iniciar_sesion
 from utilidades import limpiar_pantalla, pausar
 from archivos import cargar_usuarios
+from archivos import eliminar_usuario
 
 usuarios = cargar_usuarios()
 opcion = ""

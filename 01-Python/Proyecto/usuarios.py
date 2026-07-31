@@ -1,21 +1,35 @@
+from archivos import guardar_usuarios
+
 def crear_usuario(usuarios):
     nombre = input("Nombre: ")
     contraseña = input("Contraseña: ")
+
     for usuario in usuarios:
         if usuario["nombre"] == nombre:
             print("Ese usuario ya está registrado.")
             return
+
     usuario = {
-    "nombre": nombre,
-    "contraseña": contraseña
-}
-    archivo = open("01-Python/Proyecto/usuarios.txt", "a")
+        "nombre": nombre,
+        "contraseña": contraseña
+    }
+
     usuarios.append(usuario)
-    archivo.write(f"{usuario['nombre']};{usuario['contraseña']}\n")
-    archivo.close()
+    guardar_usuarios(usuarios)
 
     print("Usuario creado correctamente.")
-    
+
+def eliminar_usuario(usuarios):
+    nombre = input("Nombre del usuario a eliminar: ")
+    contraseña = input("Contraseña del usuario a eliminar: ")
+    for usuario in usuarios:
+        if usuario["nombre"] == nombre and usuario["contraseña"] == contraseña:
+            usuarios.remove(usuario)
+            guardar_usuarios(usuarios)
+            print("Usuario eliminado correctamente.")
+            return
+    print("Ese usuario no existe.")
+
 def ver_usuarios(usuarios):
 
     print("======== USUARIOS ========")
@@ -28,12 +42,3 @@ def ver_usuarios(usuarios):
 
     print("==========================")
     
-def eliminar_usuario(usuarios):
-    nombre = input("Nombre del usuario a eliminar: ")
-    contraseña = input("Contraseña del usuario a eliminar: ")
-    for usuario in usuarios:
-        if usuario["nombre"] == nombre and usuario["contraseña"] == contraseña:
-            usuarios.remove(usuario)
-            print("Usuario eliminado correctamente.")
-            return
-    print("Ese usuario no existe.")
