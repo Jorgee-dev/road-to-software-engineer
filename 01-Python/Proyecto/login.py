@@ -1,5 +1,5 @@
 def iniciar_sesion(usuarios):
-    nombre_usuario = input("Nombre de usuario: ")
+    nombre_usuario = input("Nombre de usuario: ").strip().title()
     contraseña_usuario = input("Contraseña: ")
 
     for usuario in usuarios:

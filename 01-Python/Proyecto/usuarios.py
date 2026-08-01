@@ -10,7 +10,7 @@ def crear_usuario(usuarios):
             return
 
     usuario = {
-        "nombre": nombre,
+        "nombre": nombre.strip().title(),
         "contraseña": contraseña
     }
 
