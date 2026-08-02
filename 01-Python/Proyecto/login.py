@@ -4,6 +4,6 @@ def iniciar_sesion(usuarios):
 
     for usuario in usuarios:
         if usuario["nombre"] == nombre_usuario and usuario["contraseña"] == contraseña_usuario:
-            return True
+            return usuario
 
-    return False
+    return None

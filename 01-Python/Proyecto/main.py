@@ -6,19 +6,21 @@ from utilidades import limpiar_pantalla, pausar
 from archivos import cargar_usuarios
 
 usuarios = cargar_usuarios()
+usuario_actual = None
 opcion = ""
 
 while opcion != "6":
 
     limpiar_pantalla()
-    mostrar_menu()
+    mostrar_menu(usuario_actual)
 
     opcion = input("Seleccione una opción: ")
 
     if opcion == "1":
 
-        if iniciar_sesion(usuarios):
-            print("Acceso concedido.")
+        usuario_actual = iniciar_sesion(usuarios)
+        if usuario_actual:
+            print(f"Bienvenido, {usuario_actual['nombre']}")
             pausar()
         else:
             print("Acceso denegado.")

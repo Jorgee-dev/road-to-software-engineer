@@ -1,4 +1,9 @@
-def mostrar_menu():
+def mostrar_menu(usuario_actual):
+    if usuario_actual:
+        print("======================================")
+        print(f"Usuario actual:\n{usuario_actual['nombre']}")
+        print("======================================")
+    
     print("================ MENÚ ================")
     print("1. Iniciar sesión")
     print("2. Crear usuario")
@@ -7,3 +12,4 @@ def mostrar_menu():
     print("5. Información")
     print("6. Salir")
     print("======================================")
+
