@@ -11,8 +11,9 @@ def crear_usuario(usuarios):
 
     usuario = {
         "nombre": nombre.strip().title(),
-        "contraseña": contraseña
-    }
+        "contraseña": contraseña,
+        "rol": "usuario"
+}
 
     usuarios.append(usuario)
     guardar_usuarios(usuarios)

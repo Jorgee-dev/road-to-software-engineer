@@ -7,3 +7,8 @@ def iniciar_sesion(usuarios):
             return usuario
 
     return None
+
+
+def cerrar_sesion():
+    print("Sesión cerrada correctamente.")
+    return None

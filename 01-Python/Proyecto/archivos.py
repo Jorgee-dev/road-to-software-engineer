@@ -14,20 +14,21 @@ def cargar_usuarios():
 
         usuario = {
             "nombre": datos[0],
-            "contraseña": datos[1]
+            "contraseña": datos[1],
+            "rol": datos[2]
         }
 
         usuarios.append(usuario)
 
     archivo.close()
-    
+
     return usuarios
 
-def guardar_usuarios(usuarios): 
+def guardar_usuarios(usuarios):
     archivo = open("01-Python/Proyecto/usuarios.txt", "w")
 
     for usuario in usuarios:
-        linea = f"{usuario['nombre']};{usuario['contraseña']}\n"
+        linea = f"{usuario['nombre']};{usuario['contraseña']};{usuario['rol']}\n"
         archivo.write(linea)
 
     archivo.close()

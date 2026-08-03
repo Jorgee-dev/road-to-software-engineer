@@ -1,7 +1,7 @@
 from menu import mostrar_menu
 from informacion import mostrar_informacion
 from usuarios import crear_usuario, ver_usuarios, eliminar_usuario
-from login import iniciar_sesion
+from login import iniciar_sesion, cerrar_sesion
 from utilidades import limpiar_pantalla, pausar
 from archivos import cargar_usuarios
 
@@ -17,25 +17,39 @@ while opcion != "6":
     opcion = input("Seleccione una opción: ")
 
     if opcion == "1":
+        if usuario_actual is None:
 
-        usuario_actual = iniciar_sesion(usuarios)
-        if usuario_actual:
-            print(f"Bienvenido, {usuario_actual['nombre']}")
-            pausar()
+            usuario_actual = iniciar_sesion(usuarios)
+
+            if usuario_actual:
+                print(f"Bienvenido, {usuario_actual['nombre']}")
+            else:
+                print("Usuario o contraseña incorrectos.")
         else:
-            print("Acceso denegado.")
-            pausar()
+
+            usuario_actual = cerrar_sesion()
+        pausar()
 
     elif opcion == "2":
-        crear_usuario(usuarios)
+
+        if usuario_actual["rol"] == "admin":
+            crear_usuario(usuarios)
+        else:
+            print("No tienes permisos para realizar esta acción.")
         pausar()
 
     elif opcion == "3":
-        ver_usuarios(usuarios)
+        if usuario_actual["rol"] == "admin":
+            ver_usuarios(usuarios)
+        else:
+            print("No tienes permisos para realizar esta acción.")
         pausar()
 
     elif opcion == "4":
-        eliminar_usuario(usuarios)
+        if usuario_actual["rol"] == "admin":
+            eliminar_usuario(usuarios)
+        else:
+            print("No tienes permisos para realizar esta acción.")
         pausar()
 
     elif opcion == "5":
