@@ -1,9 +1,9 @@
-from menu import mostrar_menu
 from informacion import mostrar_informacion
 from usuarios import crear_usuario, ver_usuarios, eliminar_usuario
 from login import iniciar_sesion, cerrar_sesion
 from utilidades import limpiar_pantalla, pausar, es_admin
 from archivos import cargar_usuarios
+from menu import mostrar_menu_inicio, mostrar_menu_admin, mostrar_menu_usuario
 
 usuarios = cargar_usuarios()
 usuario_actual = None
@@ -12,7 +12,15 @@ opcion = ""
 while opcion != "6":
 
     limpiar_pantalla()
-    mostrar_menu(usuario_actual)
+
+    if usuario_actual is None:
+        mostrar_menu_inicio()
+
+    elif es_admin(usuario_actual):
+        mostrar_menu_admin(usuario_actual)
+
+    else:
+        mostrar_menu_usuario(usuario_actual)
 
     opcion = input("Seleccione una opción: ")
 
@@ -40,6 +48,7 @@ while opcion != "6":
 
     elif opcion == "3":
         if es_admin(usuario_actual):
+            limpiar_pantalla()
             ver_usuarios(usuarios)
         else:
             print("No tienes permisos para realizar esta acción.")
@@ -53,6 +62,7 @@ while opcion != "6":
         pausar()
 
     elif opcion == "5":
+        limpiar_pantalla()
         mostrar_informacion()
         pausar()
 
