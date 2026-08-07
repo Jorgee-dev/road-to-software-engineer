@@ -1,3 +1,4 @@
 Jorge;1234;admin
 Carlos;abcd;usuario
 Pedro;1111;usuario
+Prueba;1111;moderador

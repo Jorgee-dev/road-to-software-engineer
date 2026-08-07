@@ -1,3 +1,5 @@
+from utilidades import tiene_permiso
+
 def mostrar_menu_inicio():
 
     print("================ MENÚ ================")
@@ -27,7 +29,10 @@ def mostrar_menu_usuario(usuario_actual):
     print("======================================")
     print("================ MENÚ ================")
     print("1. Cerrar sesión")
+
+    if tiene_permiso(usuario_actual, "ver_usuarios"):
+        print("3. Ver usuarios")
+
     print("5. Información")
     print("6. Salir")
     print("======================================")
-

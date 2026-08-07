@@ -1,7 +1,7 @@
 from informacion import mostrar_informacion
 from usuarios import crear_usuario, ver_usuarios, eliminar_usuario
 from login import iniciar_sesion, cerrar_sesion
-from utilidades import limpiar_pantalla, pausar, es_admin
+from utilidades import limpiar_pantalla, pausar, es_admin, tiene_permiso
 from archivos import cargar_usuarios
 from menu import mostrar_menu_inicio, mostrar_menu_admin, mostrar_menu_usuario
 
@@ -40,14 +40,14 @@ while opcion != "6":
 
     elif opcion == "2":
 
-        if es_admin(usuario_actual):
+        if tiene_permiso(usuario_actual, "crear_usuario"):
             crear_usuario(usuarios)
         else:
             print("No tienes permisos para realizar esta acción.")
         pausar()
 
     elif opcion == "3":
-        if es_admin(usuario_actual):
+        if tiene_permiso(usuario_actual, "ver_usuarios"):
             limpiar_pantalla()
             ver_usuarios(usuarios)
         else:
@@ -55,7 +55,7 @@ while opcion != "6":
         pausar()
 
     elif opcion == "4":
-        if es_admin(usuario_actual):
+        if tiene_permiso(usuario_actual, "eliminar_usuario"):
             eliminar_usuario(usuarios)
         else:
             print("No tienes permisos para realizar esta acción.")
