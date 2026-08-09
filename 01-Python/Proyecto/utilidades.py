@@ -7,6 +7,9 @@ def limpiar_pantalla():
 def pausar():
     input("\nPulsa ENTER para continuar...")
 
+def normalizar_nombre(nombre):
+    return nombre.strip().title()
+
 def es_admin(usuario_actual):
 
     if usuario_actual is None:

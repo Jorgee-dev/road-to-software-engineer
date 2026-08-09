@@ -1,5 +1,7 @@
+from utilidades import normalizar_nombre
+
 def iniciar_sesion(usuarios):
-    nombre_usuario = input("Nombre de usuario: ").strip().title()
+    nombre_usuario = normalizar_nombre(input("Nombre de usuario: "))
     contraseña_usuario = input("Contraseña: ")
 
     for usuario in usuarios:

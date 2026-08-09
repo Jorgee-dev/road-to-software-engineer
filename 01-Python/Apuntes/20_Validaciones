@@ -1,0 +1,134 @@
+# Día 20 — Validaciones, archivos y control de errores
+
+##  Objetivo del día
+
+Hoy hemos mejorado la seguridad y estabilidad del proyecto antes de pasar a trabajar con una base de datos.
+
+La idea principal ha sido detectar situaciones que podrían romper el programa o provocar comportamientos incorrectos.
+
+---
+
+##  Validación de usuarios
+
+Hemos añadido una función para normalizar los nombres:
+
+- Elimina espacios innecesarios con `strip()`.
+- Convierte el nombre a un formato consistente con `title()`.
+
+Esto permite tratar como el mismo usuario entradas como:
+
+- `Jorge`
+- ` jOrGe `
+- `JORGE`
+
+También hemos añadido validaciones para evitar:
+
+- Crear usuarios sin nombre.
+- Crear usuarios sin contraseña.
+- Crear usuarios duplicados.
+
+Es importante validar cada dato justo después de recibirlo antes de continuar con el siguiente paso.
+
+---
+
+##  Uso de `return`
+
+Hemos utilizado `return` para detener una función cuando los datos introducidos no son válidos.
+
+Por ejemplo, si el nombre está vacío, `crear_usuario()` termina inmediatamente y ni siquiera solicita la contraseña.
+
+Esto evita continuar ejecutando pasos innecesarios.
+
+---
+
+##  Gestión de archivos con `with open()`
+
+Antes utilizábamos `open()` y posteriormente `close()`.
+
+Ahora utilizamos `with open()` para trabajar con los archivos.
+
+La ventaja es que Python se encarga automáticamente de cerrar el archivo cuando termina el bloque.
+
+Esto hace el código más seguro y limpio.
+
+---
+
+##  Validación de `usuarios.txt`
+
+Cada usuario se guarda con tres datos:
+
+`nombre;contraseña;rol`
+
+Al cargar el archivo comprobamos que cada línea tenga exactamente tres partes.
+
+Si una línea está mal formada, utilizamos `continue` para ignorarla y continuar con las siguientes.
+
+Esto evita que una única línea incorrecta provoque que todo el programa se cierre.
+
+---
+
+##  Protección al eliminar usuarios
+
+Hemos detectado un posible problema:
+
+Un administrador podría intentar eliminar su propio usuario mientras tiene la sesión iniciada.
+
+Esto podría dejar una situación inconsistente porque el usuario desaparecería de la lista, pero seguiría existiendo temporalmente en `usuario_actual`.
+
+Para evitarlo, `eliminar_usuario()` recibe ahora también `usuario_actual`.
+
+Antes de continuar con la eliminación comprueba si el usuario que se quiere eliminar es el mismo que está conectado.
+
+Si coincide, la operación se cancela.
+
+---
+
+##  Parámetros de las funciones
+
+Hemos visto que una función puede necesitar información adicional para poder realizar correctamente su trabajo.
+
+Por ejemplo:
+
+`eliminar_usuario(usuarios, usuario_actual)`
+
+- `usuarios` → permite buscar y eliminar usuarios.
+- `usuario_actual` → permite saber quién está conectado.
+
+Esto permite que la función tenga toda la información necesaria para tomar su decisión.
+
+---
+
+##  Conceptos aprendidos
+
+- Validación de datos.
+- Normalización de entradas.
+- `strip()`.
+- `title()`.
+- `return`.
+- `continue`.
+- `len()`.
+- `with open()`.
+- Gestión segura de archivos.
+- Parámetros de funciones.
+- Estados del programa.
+- Prevención de errores.
+- Control de permisos.
+- Consistencia de la sesión.
+
+---
+
+##  Próximo objetivo
+
+El proyecto sigue utilizando `usuarios.txt` como almacenamiento.
+
+El siguiente gran paso será comenzar a trabajar con una base de datos.
+
+Pasaremos progresivamente de:
+
+Python → archivo de texto
+
+a:
+
+Python → SQLite → datos estructurados
+
+Esto nos permitirá empezar a trabajar con SQL y acercar el proyecto a una aplicación más real.

@@ -1,8 +1,19 @@
 from archivos import guardar_usuarios
+from utilidades import normalizar_nombre
 
 def crear_usuario(usuarios):
-    nombre = input("Nombre: ")
+    nombre = normalizar_nombre(input("Nombre: "))
+    
+
+    if nombre == "":
+        print("El nombre no puede estar vacío.")
+        return
+    
     contraseña = input("Contraseña: ")
+
+    if contraseña == "":
+        print("La contraseña no puede estar vacía.")
+        return
 
     for usuario in usuarios:
         if usuario["nombre"] == nombre:
@@ -10,7 +21,7 @@ def crear_usuario(usuarios):
             return
 
     usuario = {
-        "nombre": nombre.strip().title(),
+        "nombre": nombre,
         "contraseña": contraseña,
         "rol": "usuario"
 }
@@ -20,9 +31,15 @@ def crear_usuario(usuarios):
 
     print("Usuario creado correctamente.")
 
-def eliminar_usuario(usuarios):
-    nombre = input("Nombre del usuario a eliminar: ")
+def eliminar_usuario(usuarios, usuario_actual):
+
+    nombre = normalizar_nombre(input("Nombre del usuario a eliminar: "))
+    if usuario_actual["nombre"] == nombre:
+        print("No puedes eliminar tu propio usuario mientras tienes la sesión iniciada.")
+        return
+
     contraseña = input("Contraseña del usuario a eliminar: ")
+    
     for usuario in usuarios:
         if usuario["nombre"] == nombre and usuario["contraseña"] == contraseña:
             usuarios.remove(usuario)

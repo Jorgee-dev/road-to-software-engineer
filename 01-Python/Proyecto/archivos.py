@@ -1,35 +1,33 @@
 def cargar_usuarios():
     usuarios = []
 
-    archivo = open("01-Python/Proyecto/usuarios.txt", "r")
+    with open("01-Python/Proyecto/usuarios.txt", "r") as archivo:
 
-    for linea in archivo:
+        for linea in archivo:
 
-        linea = linea.strip()
+            linea = linea.strip()
 
-        if linea == "":
-            continue
+            if linea == "":
+                continue
 
-        datos = linea.split(";")
+            datos = linea.split(";")
 
-        usuario = {
-            "nombre": datos[0],
-            "contraseña": datos[1],
-            "rol": datos[2]
-        }
+            if len(datos) != 3:
+                print("Una línea del archivo de usuarios no es válida.")
+                continue
 
-        usuarios.append(usuario)
-
-    archivo.close()
+            usuario = {
+                "nombre": datos[0],
+                "contraseña": datos[1],
+                "rol": datos[2]
+            }
+            usuarios.append(usuario)
 
     return usuarios
 
 def guardar_usuarios(usuarios):
-    archivo = open("01-Python/Proyecto/usuarios.txt", "w")
+    with open("01-Python/Proyecto/usuarios.txt", "w") as archivo:
 
-    for usuario in usuarios:
-        linea = f"{usuario['nombre']};{usuario['contraseña']};{usuario['rol']}\n"
-        archivo.write(linea)
-
-    archivo.close()
-
+        for usuario in usuarios:
+            linea = f"{usuario['nombre']};{usuario['contraseña']};{usuario['rol']}\n"
+            archivo.write(linea)

@@ -56,7 +56,7 @@ while opcion != "6":
 
     elif opcion == "4":
         if tiene_permiso(usuario_actual, "eliminar_usuario"):
-            eliminar_usuario(usuarios)
+            eliminar_usuario(usuarios, usuario_actual)
         else:
             print("No tienes permisos para realizar esta acción.")
         pausar()
